@@ -1,0 +1,199 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Poppins:wght@100;200;300;400;500;600;700&display=swap');
+:root {
+    --main-color: #dde0f1;
+}
+
+* {
+    font-family: 'Open Sans', sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: var(--main-color) url('../imgs/early-birds.png');
+    background-position: right bottom;
+    background-size: 100% auto;
+}
+
+
+/* Start Game */
+
+._sGame {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+._sGame .start-content {
+    width: 980px;
+    height: 350px;
+    padding: 30px 0 26px;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 20px;
+}
+
+.start-content i {
+    background-color: var(--main-color);
+    padding: 30px;
+    border-radius: 50%;
+    color: #3f5cc3;
+    font-size: 50px;
+    border-top: 1px solid#fff;
+    border-bottom: 1px solid#fff;
+    box-shadow: 0px 0 7px #3f5cc3;
+}
+
+.start-content .advice {
+    margin: 30px 0;
+    font-family: 'Droid Sans Mono', courier;
+}
+
+.btn {
+    height: 44px;
+    font-size: 16px!important;
+    line-height: 44px;
+    font-weight: 700;
+    color: #3f5cc3;
+    text-shadow: 0 1px 1px #fff8c4;
+    text-transform: uppercase;
+    text-align: center;
+    -webkit-box-shadow: rgb(99 121 133 / 14%) 0 0 0 4px;
+    box-shadow: rgb(99 121 133 / 14%) 0 0 0 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    border: none;
+    border-top: 1px solid #fff696;
+    border-bottom: 1px solid #ffce06;
+    background-color: #ffde0e;
+    outline: 0;
+    cursor: pointer;
+    position: relative;
+    margin: 0 0 5px 4px;
+    padding: 0 20px;
+}
+
+.btn:hover {
+    border-top-color: #fdf488;
+    border-bottom-color: #f0c002;
+    background-color: #f5d604;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#fae811), to(#f5d604));
+    background-image: -o-linear-gradient(top, #fae811, #f5d604);
+    background-image: linear-gradient(to bottom, #fae811, #f5d604);
+}
+
+
+/* End Start Game */
+
+
+/* Start Typing Game */
+
+.wrapper {
+    /* display: none; */
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wrapper .content-box {
+    width: 1100px;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 30px;
+}
+
+.content-box .content,
+.content-box .typing-text {
+    align-self: center;
+    padding: 20px;
+    border-radius: 10px;
+    padding: 35px;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+}
+
+.content-box .typing-text {
+    grid-column: span 9;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.typing-text::-webkit-scrollbar {
+    width: 0;
+}
+
+.content-box .content {
+    grid-column: span 3;
+}
+
+.box {
+    /* border: 1px solid #ccc; */
+    border-radius: 10px;
+    padding: 13px 20px 0;
+}
+
+.typing-text p {
+    font-size: 21px;
+    text-align: justify;
+    word-break: break-all;
+    letter-spacing: 1px;
+    align-items: center;
+    width: 100%;
+    font-family: 'Droid Sans Mono', courier;
+    /* will-change: transform;
+    background-image: url('../imgs/type-border-tall.gif');
+    background-position-y: -0.5px;
+    background-size: 100% 43px; */
+}
+
+
+/* .typing-text p {
+    border-bottom: 3px solid transparent;
+    color: #4a4a4a;
+    display: inline-block;
+    line-height: 1.5;
+    margin: 5px 2px 5px 0;
+} */
+
+.content-box .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.content .result-details {
+    list-style: none;
+}
+
+.result-details li {
+    margin: 30px 0;
+    text-align: center;
+}
+
+.result-details li p {
+    font-size: 13px;
+    color: #b2b6ce;
+}
+
+.result-details li span {
+    font-size: 25px;
+    font-weight: 500;
+    color: #3f5cc3;
+}
+
+.content .btn {
+    height: 35px;
+    font-size: 13px!important;
+    line-height: 33px;
+}
+
+
+/* End Typing Game */
