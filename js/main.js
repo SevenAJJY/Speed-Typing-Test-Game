@@ -30,7 +30,14 @@ const cpmTag = document.querySelector('.cpm span');
 const accuracyTag = document.querySelector('.accuracy span b');
 const tryAgainBtn = document.querySelector('.content-box button');
 const sGame = document.querySelector('._sGame');
-const stratGame = sGame.querySelector('.start-game');
+const startGame = document.querySelector('.start-game');
+const circularProgress = document.querySelector('.circular-progress');
+const progressValue = document.querySelector('.progress-value');
+
+let progressStartValue = 0;
+let progressEndValue = 90;
+let speed = 100;
+
 
 let timer;
 let maxTime = 60;
@@ -122,6 +129,7 @@ function initTyping() {
          */
         let accuracy = ((charIndex - mistakes) / charIndex) * 100;
         accuracyTag.innerText = accuracy.toFixed(1);
+
     } else {
         inputField.value = "";
         clearInterval(timer);
@@ -136,6 +144,21 @@ function initTimer() {
         clearInterval(timer);
     }
 }
+
+function getStats() {
+    let progressStt = setInterval(() => {
+        progressStartValue++;
+
+        progressValue.textContent = `${progressStartValue}%`;
+        circularProgress.style.background = `conic-gradient(#3f5cc3 ${progressStartValue * 3.6}deg, #ededed 0deg)`;
+
+        if (progressStartValue == progressEndValue) {
+            clearInterval(progressStt);
+        }
+    }, speed);
+}
+
+
 /**
  *  calling loadParagraph function And 
  *  resetting each variable and elements value to default 
@@ -160,7 +183,7 @@ function resetGame() {
  * Start game
  */
 
-stratGame.onclick = () => {
+startGame.onclick = () => {
     sGame.classList.add('hide');
     inputField.parentElement.classList.add('show');
 }

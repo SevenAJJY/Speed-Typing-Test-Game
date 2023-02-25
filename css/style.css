@@ -11,6 +11,7 @@
 }
 
 body {
+    font-family: 'Poppins', sans-serif;
     background: var(--main-color) url('../imgs/early-birds.png');
     background-position: right bottom;
     background-size: 100% auto;
@@ -302,3 +303,62 @@ body {
 
 
 /* End Typing Game */
+
+
+/* start spelling results panel */
+
+.spelling-results-panel {
+    width: 980px;
+    height: 600px;
+    border-radius: 20px;
+    background-color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.circular-progress {
+    position: relative;
+    height: 130px;
+    width: 130px;
+    border-radius: 50%;
+    background-color: red;
+    background: conic-gradient(#3f5cc3 3.6deg, #ededed 0deg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.prog-stats {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 100px;
+}
+
+.circular-progress::before {
+    content: "";
+    position: absolute;
+    height: 105px;
+    width: 105px;
+    background-color: #fff;
+    border-radius: 50%;
+}
+
+.progress-value {
+    position: relative;
+    font-size: 50px;
+    font-weight: 600;
+    color: #3f5cc3;
+}
+
+.text {
+    font-size: 13px;
+    color: #b2b6ce;
+    text-align: center;
+    display: block;
+}
+
+
+/* End spelling results panel */
