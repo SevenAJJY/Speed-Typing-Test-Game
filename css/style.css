@@ -126,6 +126,8 @@ body {
     gap: 30px;
 }
 
+.wrapper.show .typing-text .progress {}
+
 .content-box .content,
 .content-box .typing-text {
     align-self: center;
@@ -144,6 +146,45 @@ body {
     grid-column: span 9;
     /* max-height: 400px; */
     /* overflow-y: auto; */
+    position: relative;
+}
+
+.content-box .typing-text.progress:before {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 5px;
+    top: 0;
+    left: 0;
+    background: #3f5cc3;
+    border-radius: 10px;
+    transition: width 3.s ease;
+    animation: progress 60s linear forwards;
+}
+
+.content-box .typing-text.progress:after {
+    content: "";
+    position: absolute;
+    height: 5px;
+    width: 5px;
+    background: #ffde0e;
+    top: 0;
+    left: -5px;
+    border-radius: 50%;
+    transition: left 3.s ease;
+    animation: left-move 60s linear forwards;
+}
+
+@keyframes progress {
+    100% {
+        width: 100%;
+    }
+}
+
+@keyframes left-move {
+    100% {
+        left: calc(100% - 5px);
+    }
 }
 
 

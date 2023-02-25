@@ -67,6 +67,7 @@ function initTyping() {
         if (!isTyping) {
             timer = setInterval(initTimer, 1000);
             isTyping = true;
+            typingText.parentElement.parentElement.classList.add('progress');
         }
         // if user hasn't entered any character or pressed backspace
         if (typedChar == undefined) {
@@ -141,6 +142,7 @@ function initTimer() {
  *  @return void
  */
 function resetGame() {
+    typingText.parentElement.parentElement.classList.remove('progress');
     randomParagraph();
     inputField.value = '';
     clearInterval(timer);
@@ -151,6 +153,7 @@ function resetGame() {
     wpmTag.innerText = 0;
     cpmTag.innerText = 0;
     accuracyTag.innerText = 0;
+
 }
 
 /**
