@@ -308,6 +308,58 @@ body {
 /* End Typing Game */
 
 
+/************ Start spinner  *************/
+
+.spinner {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    grid-column: span 9;
+    background-color: #0000303d;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+    transition: opacity .6s ease;
+    border-radius: 10px;
+}
+
+.spinner.show {
+    display: block;
+    transition: opacity .6s ease;
+}
+
+.spinner div {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    border-left: 4px solid #0032e3;
+    border-right: 4px solid #0032e3;
+    border-top: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+    animation: spinner 2s linear infinite;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(50%, 50%);
+}
+
+@keyframes spinner {
+    0% {
+        transform: rotate(0);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+/************ End spinner *************/
+
+
 /* start spelling results panel */
 
 .spelling-results-panel {

@@ -35,6 +35,7 @@ const allCircularProgress = document.querySelectorAll('.circular-progress');
 const progressValue = document.querySelector('.progress-value');
 const spellingResultsPanel = document.querySelector('.spelling-results-panel');
 const restart = document.querySelector('.restart');
+const spinner = document.querySelector('.spinner')
 
 const speed = 40;
 let myTimeout;
@@ -154,6 +155,7 @@ function initTimer() {
         timeLeft--;
         timeTag.innerText = timeLeft;
         if (timeLeft === 0) {
+            spinner.classList.add('show');
             myTimeout = setTimeout(() => {
                 inputField.parentElement.classList.toggle('show');
                 spellingResultsPanel.classList.add("show");
@@ -167,7 +169,7 @@ function initTimer() {
 
 
 function getStats() {
-    console.log('hello world')
+    spinner.classList.remove('show');
     let accProgressStartValue = wpmProgressStartValue = cpmProgressStartValue = 0;
 
     // Accuracy Progress
@@ -252,7 +254,7 @@ function resultatExplication() {
         a = "<strong>Your accuracy</strong> is Weak. You’ll automatically type faster when you make fewer mistakes. You’ll get there quickly with a little training!";
     } else if (acc > 50 && acc < 75) {
         a = "<strong>Your accuracy</strong> is okay. You’ll automatically type faster when you make fewer mistakes. You’ll get there quickly with a little training!";
-    } else if (acc > 75 && acc < 85) {
+    } else if (acc > 75 && acc < 95) {
         a = "<strong>Your accuracy</strong> is good. You’ll automatically type faster when you make fewer mistakes. You’ll get there quickly with a little training!";
     } else if (acc > 85 && sp < 25) {
         a = "<strong>Your accuracy</strong> is alright, but it seems to be affecting your typing speed a little bit. Remember, practice makes perfect!";
@@ -263,7 +265,7 @@ function resultatExplication() {
     // Speed
     if (sp < 20) {
         s = "<strong>Your Speed</strong> is below average. If you practice often, you could easily type twice as fast and greatly increase your productivity.";
-    } else if (sp > 20 && sp < 30) {
+    } else if (sp > 20 && sp < 40) {
         s = "<strong>Your Speed</strong> is slightly below average. With a little training, you could greatly improve your skills and increase your productivity.";
     } else {
         s = "<strong>Your Speed</strong> is excellent. Practice makes perfection!";
