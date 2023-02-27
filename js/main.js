@@ -34,12 +34,14 @@ const startGame = document.querySelector('.start-game');
 const allCircularProgress = document.querySelectorAll('.circular-progress');
 const progressValue = document.querySelector('.progress-value');
 const spellingResultsPanel = document.querySelector('.spelling-results-panel');
+const restart = document.querySelector('.restart');
 
-const speed = 50;
+const speed = 40;
+let myTimeout;
 
 
 let timer;
-let maxTime = 5;
+let maxTime = 60;
 let timeLeft = maxTime;
 
 let isTyping = false;
@@ -146,22 +148,26 @@ function initTyping() {
     }
 }
 
+
 function initTimer() {
     if (timeLeft > 0) {
         timeLeft--;
         timeTag.innerText = timeLeft;
         if (timeLeft === 0) {
-            inputField.parentElement.classList.toggle('show');
-            spellingResultsPanel.classList.add("show");
+            myTimeout = setTimeout(() => {
+                inputField.parentElement.classList.toggle('show');
+                spellingResultsPanel.classList.add("show");
+                getStats();
+            }, 3000);
         }
     } else {
         clearInterval(timer);
-        getStats();
     }
 }
 
 
 function getStats() {
+    console.log('hello world')
     let accProgressStartValue = wpmProgressStartValue = cpmProgressStartValue = 0;
 
     // Accuracy Progress
@@ -205,7 +211,6 @@ function getStats() {
     }
     let wpmProgress = setInterval(() => {
         wpmProgressStartValue++;
-        console.log(wpmProgressStartValue, Number.parseInt(+wpmTag.innerText), wpmProgressStartValue == Number.parseInt(+wpmTag.innerText));
         document.querySelector('.prog-wpm .progress-value').innerHTML = `${wpmProgressStartValue} <small>WPM</small>`;
         allCircularProgress[2].style.background = `conic-gradient(#3f5cc3 ${deg}deg, #ededed 0deg)`;
         if (wpmProgressStartValue == Number.parseInt(+wpmTag.innerText)) {
@@ -213,10 +218,7 @@ function getStats() {
         }
     }, speed);
 
-}
-
-function getSpeed() {
-
+    resultatExplication();
 }
 
 
@@ -241,8 +243,42 @@ function resetGame() {
 
 }
 
+function resultatExplication() {
+    let s = a = "";
+    let acc = +accuracyTag.innerText;
+    let sp = Number.parseInt(wpmTag.innerText);
+    // Accuracy
+    if (acc < 50) {
+        a = "<strong>Your accuracy</strong> is Weak. You’ll automatically type faster when you make fewer mistakes. You’ll get there quickly with a little training!";
+    } else if (acc > 50 && acc < 75) {
+        a = "<strong>Your accuracy</strong> is okay. You’ll automatically type faster when you make fewer mistakes. You’ll get there quickly with a little training!";
+    } else if (acc > 75 && acc < 85) {
+        a = "<strong>Your accuracy</strong> is good. You’ll automatically type faster when you make fewer mistakes. You’ll get there quickly with a little training!";
+    } else if (acc > 85 && sp < 25) {
+        a = "<strong>Your accuracy</strong> is alright, but it seems to be affecting your typing speed a little bit. Remember, practice makes perfect!";
+    } else {
+        a = "<strong>Your accuracy</strong> is excellent. Practice makes perfection!";
+    }
+    document.querySelector('.acc p').innerHTML = a;
+    // Speed
+    if (sp < 20) {
+        s = "<strong>Your Speed</strong> is below average. If you practice often, you could easily type twice as fast and greatly increase your productivity.";
+    } else if (sp > 20 && sp < 30) {
+        s = "<strong>Your Speed</strong> is slightly below average. With a little training, you could greatly improve your skills and increase your productivity.";
+    } else {
+        s = "<strong>Your Speed</strong> is excellent. Practice makes perfection!";
+    }
+    document.querySelector('.sp p').innerHTML = s;
+}
+
+function tryAgain() {
+    resetGame();
+    inputField.parentElement.classList.toggle('show');
+    spellingResultsPanel.classList.toggle("show");
+}
 
 
 randomParagraph();
 inputField.addEventListener('input', initTyping);
 tryAgainBtn.addEventListener('click', resetGame);
+restart.addEventListener('click', tryAgain);

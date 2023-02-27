@@ -320,6 +320,7 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     display: none;
+    transition: transform 0.3s ease;
 }
 
 .spelling-results-panel.show {
@@ -387,7 +388,7 @@ body {
 
 .resultat-explication {
     max-width: 757px;
-    margin: 0px auto 54px;
+    margin: 0px auto 45px;
     padding: 27px 36px;
     background: var(--main-color);
     border-left: 10px solid #3f5cc3;
@@ -420,7 +421,7 @@ body {
     height: 50px;
 }
 
-.resultat-explication .control {
+.control {
     display: flex;
     align-items: center;
     justify-content: center;
