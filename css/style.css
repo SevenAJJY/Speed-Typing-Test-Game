@@ -4,7 +4,7 @@
 }
 
 * {
-    font-family: 'Open Sans', sans-serif;
+    /* font-family: 'Open Sans', sans-serif; */
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -120,14 +120,16 @@ body {
     display: block;
 }
 
+.wrapper.hide {
+    display: none;
+}
+
 .wrapper .content-box {
     width: 1100px;
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     gap: 30px;
 }
-
-.wrapper.show .typing-text .progress {}
 
 .content-box .content,
 .content-box .typing-text {
@@ -214,6 +216,7 @@ body {
     line-height: 1.9;
     user-select: none;
     word-wrap: wrap;
+    font-weight: 400;
 }
 
 .typing-text p span.correct {
@@ -316,6 +319,15 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    display: none;
+}
+
+.spelling-results-panel.show {
+    display: block;
+}
+
+.spelling-results-panel.hide {
+    display: none;
 }
 
 .circular-progress {
@@ -323,7 +335,6 @@ body {
     height: 130px;
     width: 130px;
     border-radius: 50%;
-    background-color: red;
     background: conic-gradient(#3f5cc3 3.6deg, #ededed 0deg);
     display: flex;
     justify-content: center;
@@ -332,9 +343,15 @@ body {
 
 .prog-stats {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
-    padding: 100px;
+    height: 250px;
+    margin-top: 50px;
+}
+
+.prog-cpm {
+    align-self: flex-start;
+    margin: 0 100px;
 }
 
 .circular-progress::before {
@@ -348,9 +365,16 @@ body {
 
 .progress-value {
     position: relative;
-    font-size: 50px;
+    font-size: 35px;
     font-weight: 600;
     color: #3f5cc3;
+    text-align: center;
+}
+
+.progress-value small {
+    color: #b2b6ce;
+    font-size: 9px;
+    display: block;
 }
 
 .text {
@@ -358,6 +382,48 @@ body {
     color: #b2b6ce;
     text-align: center;
     display: block;
+    margin-top: 8px;
+}
+
+.resultat-explication {
+    max-width: 757px;
+    margin: 0px auto 54px;
+    padding: 27px 36px;
+    background: var(--main-color);
+    border-left: 10px solid #3f5cc3;
+    border-radius: 8px;
+}
+
+.resultat-explication .explication {
+    display: flex;
+    flex: 0 0 56px;
+    font-size: 13px;
+    padding: 5px;
+}
+
+.explication .media {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-right: 13.5px;
+}
+
+.explication .contenu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.explication .media img {
+    width: 50px;
+    height: 50px;
+}
+
+.resultat-explication .control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 

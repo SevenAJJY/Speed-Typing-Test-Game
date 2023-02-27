@@ -13,7 +13,14 @@
 <body>
 
     <div class="cont">
-        <!-- 
+        <div class="_sGame">
+            <div class="start-content">
+                <i class="fa-solid fa-gauge-high"></i>
+                <h1 class="advice">Please be prepared. Good luck!</h1>
+                <button class="btn start-game">start typing now</button>
+            </div>
+        </div>
+
         <div class="wrapper">
             <input class="input-field" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" autofocus aria-hidden="true" style="outline: none; color: white; border: white; position: fixed; font-size: 1px; left: 50%; top: -21px;opacity: 0;">
             <div class="content-box">
@@ -39,8 +46,8 @@
                             <span><b>0</b>%</span>
                         </li>
                         <li class="wpm">
-                            <p>WPM</p>
-                            <span>0</span>
+                            <p>Speed</p>
+                            <span>0 <small>WPM</small></span>
                         </li>
                         <li class="cpm">
                             <p>CPM</p>
@@ -50,12 +57,12 @@
                     <button class="btn">Restart</button>
                 </div>
             </div>
-        </div> -->
+        </div>
 
         <div class="spelling-results-panel">
             <div class="prog-stats">
 
-                <div class="prog-mistakes">
+                <div class="prog-accuracy">
                     <div class="circular-progress">
                         <span class="progress-value">0%</span>
                     </div>
@@ -64,19 +71,48 @@
 
                 <div class="prog-cpm">
                     <div class="circular-progress">
-                        <span class="progress-value">0</span>
+                        <span class="progress-value">0 <small>Letter/Min</small></span>
+                        <span class="letter-min"></span>
                     </div>
                     <span class="text">CPM</span>
                 </div>
 
                 <div class="prog-wpm">
                     <div class="circular-progress">
-                        <span class="progress-value">0</span>
+                        <span class="progress-value">0 <small>WPM</small></span>
                     </div>
-                    <span class="text">WPM</span>
+                    <span class="text">Speed</span>
                 </div>
 
             </div>
+
+            <div class="resultat-explication">
+                <div class="explication-precision explication">
+                    <div class="media">
+                        <img src="./imgs/icone-precision.svg" alt="">
+                    </div>
+                    <div class="contenu">
+                        <p>
+                            <strong>Your accuracy</strong> is okay. You’ll automatically type faster when you make fewer mistakes. You’ll get there quickly with a little training!
+                        </p>
+                    </div>
+                </div>
+                <div class="explication-speed explication">
+                    <div class="media">
+                        <img src="./imgs/icone-vitesse.svg" alt="">
+                    </div>
+                    <div class="contenu">
+                        <p>
+                            <strong>Your speed</strong> is slightly below average. With a little training, you could greatly improve your skills and increase your productivity.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="control">
+                <button class="btn">Restart</button>
+            </div>
+
         </div>
 
 

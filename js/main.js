@@ -31,20 +31,29 @@ const accuracyTag = document.querySelector('.accuracy span b');
 const tryAgainBtn = document.querySelector('.content-box button');
 const sGame = document.querySelector('._sGame');
 const startGame = document.querySelector('.start-game');
-const circularProgress = document.querySelector('.circular-progress');
+const allCircularProgress = document.querySelectorAll('.circular-progress');
 const progressValue = document.querySelector('.progress-value');
+const spellingResultsPanel = document.querySelector('.spelling-results-panel');
 
-let progressStartValue = 0;
-let progressEndValue = 90;
-let speed = 100;
+const speed = 50;
 
 
 let timer;
-let maxTime = 60;
+let maxTime = 5;
 let timeLeft = maxTime;
 
 let isTyping = false;
 let charIndex = mistakes = 0;
+let accuracy = 0;
+
+/**
+ * Start game
+ */
+
+startGame.onclick = () => {
+    sGame.classList.add('hide');
+    inputField.parentElement.classList.add('show');
+}
 
 /**
  * @return void
@@ -57,6 +66,7 @@ function randomParagraph() {
     typingText.innerHTML = "";
     // getting random item from the paragraphs array, splitting all characters
     // of it, adding each character inside span and then adding this span inside <p> tag
+    paraLength = paragraphs[randIndex].length;
     paragraphs[randIndex].toLowerCase().split("").forEach((span) => {
         typingText.innerHTML += `<span>${span}</span>`;
     });
@@ -127,7 +137,7 @@ function initTyping() {
          * @Exemple
          * Accuracy = (190 / 200) * 100 = 95%
          */
-        let accuracy = ((charIndex - mistakes) / charIndex) * 100;
+        accuracy = ((charIndex - mistakes) / charIndex) * 100;
         accuracyTag.innerText = accuracy.toFixed(1);
 
     } else {
@@ -140,23 +150,75 @@ function initTimer() {
     if (timeLeft > 0) {
         timeLeft--;
         timeTag.innerText = timeLeft;
+        if (timeLeft === 0) {
+            inputField.parentElement.classList.toggle('show');
+            spellingResultsPanel.classList.add("show");
+        }
     } else {
         clearInterval(timer);
+        getStats();
     }
 }
 
+
 function getStats() {
-    let progressStt = setInterval(() => {
-        progressStartValue++;
+    let accProgressStartValue = wpmProgressStartValue = cpmProgressStartValue = 0;
 
-        progressValue.textContent = `${progressStartValue}%`;
-        circularProgress.style.background = `conic-gradient(#3f5cc3 ${progressStartValue * 3.6}deg, #ededed 0deg)`;
+    // Accuracy Progress
+    let accProgressEndValue = Math.round(+accuracyTag.innerText);
+    let accProgress = setInterval(() => {
+        accProgressStartValue++;
 
-        if (progressStartValue == progressEndValue) {
-            clearInterval(progressStt);
+        progressValue.textContent = `${accProgressStartValue}%`;
+        allCircularProgress[0].style.background = `conic-gradient(#3f5cc3 ${accProgressStartValue * 3.6}deg, #ededed 0deg)`;
+        if (accProgressStartValue == accProgressEndValue) {
+            clearInterval(accProgress);
         }
     }, speed);
+
+    // CPM
+    let cpmProgressEndValue = +cpmTag.innerText;
+    let cpmProgress = setInterval(() => {
+        cpmProgressStartValue++;
+
+        document.querySelector('.prog-cpm .progress-value').innerHTML = `${cpmProgressStartValue} <small>Letter/Min</small>`;
+        allCircularProgress[1].style.background = `conic-gradient(#3f5cc3 ${cpmProgressEndValue}deg, #ededed 0deg)`;
+        if (cpmProgressStartValue == cpmProgressEndValue) {
+            clearInterval(cpmProgress);
+        }
+    }, speed - 30);
+
+
+    // Speed (WPM)
+    let v = Number.parseInt(+wpmTag.innerText);
+    let deg = valDeg = 0;
+    if (v < 10) {
+        deg = 90;
+    } else if (v < 20) {
+        deg = 180;
+    } else if (v < 30) {
+        deg = 180 + 90;
+    } else if (v < 40) {
+        deg = 270 + (90 / 2);
+    } else {
+        deg = 360;
+    }
+    let wpmProgress = setInterval(() => {
+        wpmProgressStartValue++;
+        console.log(wpmProgressStartValue, Number.parseInt(+wpmTag.innerText), wpmProgressStartValue == Number.parseInt(+wpmTag.innerText));
+        document.querySelector('.prog-wpm .progress-value').innerHTML = `${wpmProgressStartValue} <small>WPM</small>`;
+        allCircularProgress[2].style.background = `conic-gradient(#3f5cc3 ${deg}deg, #ededed 0deg)`;
+        if (wpmProgressStartValue == Number.parseInt(+wpmTag.innerText)) {
+            clearInterval(wpmProgress);
+        }
+    }, speed);
+
 }
+
+function getSpeed() {
+
+}
+
 
 
 /**
@@ -179,14 +241,7 @@ function resetGame() {
 
 }
 
-/**
- * Start game
- */
 
-startGame.onclick = () => {
-    sGame.classList.add('hide');
-    inputField.parentElement.classList.add('show');
-}
 
 randomParagraph();
 inputField.addEventListener('input', initTyping);
