@@ -142,7 +142,9 @@ function initTyping() {
          */
         accuracy = ((charIndex - mistakes) / charIndex) * 100;
         accuracyTag.innerText = accuracy.toFixed(1);
-
+        if (charIndex + 1 === characters.length) {
+            getStats();
+        }
     } else {
         inputField.value = "";
         clearInterval(timer);
