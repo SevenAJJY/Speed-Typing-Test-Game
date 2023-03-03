@@ -86,7 +86,7 @@ a {
 
 .cont {
     position: relative;
-    height: 100vh;
+    height: calc(100vh - 60px);
 }
 
 ._sGame {
@@ -193,6 +193,7 @@ a {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     gap: 30px;
+    margin-top: 100px;
 }
 
 .content-box .content,
