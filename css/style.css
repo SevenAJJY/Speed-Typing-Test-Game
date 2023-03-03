@@ -438,6 +438,7 @@ a {
     transform: translate(-50%, -50%);
     display: none;
     transition: transform 0.3s ease;
+    margin-top: 50px;
 }
 
 .spelling-results-panel.show {
